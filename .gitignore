@@ -2,4 +2,4 @@ _DOCS/*
 edf/*
 feats/*
 _temp.html
-output/data/*
+output/data/*.mat
