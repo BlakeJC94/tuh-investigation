@@ -99,7 +99,7 @@ Each folder contains a clinical report (TXT)
 
 `Tools -> Import annotations/events`
 
-EDFbrowser cannot read the annotations provided, since they're in a *.TSE format. But this is an ascii file, the extension shouldnt' matter. I tried renaming some files to *.CSV and this worked without any issues once I told EDFbrswer how to parse the *.CSV:
+EDFbrowser cannot read the annotations provided, since they're in a *.TSE format. But this is an ascii file, the extension shouldn't matter. I tried renaming some files to *.CSV and this worked without any issues once I told EDFbrswer how to parse the *.CSV:
 
 * `Column seperator: ' '`
 * `Onset column: 1`

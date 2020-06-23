@@ -1,5 +1,5 @@
-output/
-_DOCS/
-edf/
-feats/
+_DOCS/*
+edf/*
+feats/*
 _temp.html
+output/data/*
