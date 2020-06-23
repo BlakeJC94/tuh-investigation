@@ -1,8 +1,30 @@
+Collection of my scripts and tools I used and wrote when familiarising myself with EEG data in EDF format.
+
 [Link to my dropbox folder with plots and data](https://www.dropbox.com/sh/c015795exltemlg/AACA4GcQZ2y3XLIIyuBh2GSea?dl=0)
 
 [Link to database website](https://www.isip.piconepress.com/projects/tuh_eeg/html/downloads.shtml)
 
-* Submit form for access (name, university, and email)
+
+
+
+# Installation
+
+TUH dataset is expected to be sitting in `$HOME/Workspace/data/tuh-data/`.
+
+Clone repo and run the accompanying bash script
+
+```bash
+$ git clone https://guthub.com/BlakeJC94/tuh-investigation.git
+$ cd tuh-investigation/
+$ bash linkdata.sh
+```
+
+No folders need to be manually set up, output will automatically be created as needed.
+
+
+
+
+# Notes
 
 ## Software to use:
 
@@ -106,7 +128,9 @@ done
 user@pc:~/Workspace/data/tuh-data/edf$ bash tse2csv.sh
 ```
 
-## List of patients to check out:
+# Results
+
+## Subjects batch 1
 
 For this first report, I'll only consider LE montages with generalised seizures and only look at Fz, Pz, and Cz electrodes
 

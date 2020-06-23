@@ -2,7 +2,7 @@
 addpath('./src/MATLAB/')
 
 % qad time format convert
-t = @(hour, min, sec)  hour*60*60 + min*60 + sec;
+t = @(hour, min, sec) hour*60*60 + min*60 + sec;
 
 % Files and timespans
 opts = containers.Map;
@@ -21,14 +21,14 @@ opts('subject1.edf') = [t(0,0,40), t(0,0,60), t(0,0,60)];
 
 
 % Construct and save fig for each (filename, timespan) pair
-for filenamecell = keys(opts)
+for fileName = keys(opts)
 
-    filename = filenamecell{1};  % matlab map iteration is dumb
-    timespan = opts(filename);
+    fileName = fileName{1};  % matlab map iteration is dumb
+    timeSpan = opts(fileName);
 
-    eegdiffplot(filename, timespan);
+    eegdiffplot(fileName, timeSpan);
 
-    pause(1.5);
+    pause(1.0);
 
 end
 
