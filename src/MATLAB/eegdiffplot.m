@@ -14,58 +14,9 @@ if ~exist(outputDir, 'dir')
 end
 
 
-
-
 %% Load file %%%%%%%%
 
-% find directory
-allfiles = struct2cell(dir('./edf/dev/**/*.edf'));
-for ind = 1:size(allfiles,2)
-    label = allfiles{1,ind};
-    if ~isempty(regexp(label, fileName, "once"))
-        fileDir = allfiles{2,ind};
-        break
-    end
-end
-
-% error out if fileName isn't found
-if ~exist('fileDir')
-    error('B: file not found')
-end
-
-% load edf
-[hdr, record] = edfread(strcat(fileDir, '/', fileName));
-
-% extract channels of interest
-FZch = findChannel(hdr, "[Ff][Zz]");
-CZch = findChannel(hdr, "[Cc][Zz]");
-FZdata = record(FZch, :);
-CZdata = record(CZch, :);
-
-
-
-
-%% Parse timespans %%%%%%%%
-
-FZfreq = hdr.frequency(FZch);
-CZfreq = hdr.frequency(FZch);
-if FZfreq == CZfreq
-    freq = FZfreq;
-else
-    error("Frequencies are different??")
-end
-
-% get sample points of requested timeSpan
-sample1 = (...
-    max(fix(freq*timeSpan(1)),1)):...
-    fix(freq*timeSpan(2)...
-);
-sample2 = (...
-    max(fix(freq*timeSpan(2)),1)):...
-    fix(freq*timeSpan(3)...
-);
-
-
+[FZdata, CZdata, sample1, sample2, freq, hdr, ~] = loadfile(fileName, timeSpan);
 
 
 %% Calculate distance, speed, and acceleration %%%%%%%%
@@ -74,18 +25,18 @@ timeSeries = [FZdata(:), CZdata(:)];  % indexed by (sample, position)
 
 distance = vecnorm(...
     cumsum(timeSeries(:, [1,2]), 1)/freq,...
-    2, 2
+    2, 2 ...
 );
 speed = vecnorm(...
     timeSeries(:, [1,2]),...
-    2, 2...
+    2, 2 ...
 );
 accel = vecnorm(...
     diff(timeSeries(:, [1,2]), 1)*freq,...
-    2, 2...
+    2, 2 ...
 );
 
-% save data to mat files
+%% Save data to mat files %%%%%%%%
 dataName = strcat(fileName(1:end-4), '_', num2str(timeSpan(1)), '.mat');
 dataDir = strcat(outputDir, 'data/');
 if ~exist(dataDir, 'dir')
@@ -148,8 +99,8 @@ ylabel("Fz-ref (\muV)");
 % Cz plot
 subplot(2, 8, [13 14 15 16]);
 hold on;
-plot(seconds(sample1/CZfreq), CZdata(sample1), 'b','DurationTickFormat','hh:mm:ss');
-plot(seconds(sample2/CZfreq), CZdata(sample2), 'r','DurationTickFormat','hh:mm:ss');
+plot(seconds(sample1/freq), CZdata(sample1), 'b','DurationTickFormat','hh:mm:ss');
+plot(seconds(sample2/freq), CZdata(sample2), 'r','DurationTickFormat','hh:mm:ss');
 hold off;
 % write title and axis labels
 grid on
@@ -181,8 +132,8 @@ set(gcf, 'Position', [plotx ploty plotwidth plotheight]);
 % Plot distance
 subplot(3, 1, 1);
 hold on
-plot(seconds(sample1/CZfreq), distance(sample1), 'b');
-plot(seconds(sample2/CZfreq), distance(sample2), 'r');
+plot(seconds(sample1/freq), distance(sample1), 'b');
+plot(seconds(sample2/freq), distance(sample2), 'r');
 hold off
 % write title and axis labels
 title("``dist''"); xlabel("Time"); ylabel("\muV s");
@@ -191,8 +142,8 @@ title("``dist''"); xlabel("Time"); ylabel("\muV s");
 % Plot speed
 subplot(3, 1, 2);
 hold on
-plot(seconds(sample1/CZfreq), speed(sample1), 'b');
-plot(seconds(sample2/CZfreq), speed(sample2), 'r');
+plot(seconds(sample1/freq), speed(sample1), 'b');
+plot(seconds(sample2/freq), speed(sample2), 'r');
 hold off
 % write title and axis labels
 title("``speed''"); xlabel("Time"); ylabel("\muV");
@@ -201,8 +152,8 @@ title("``speed''"); xlabel("Time"); ylabel("\muV");
 % Plot acceleration
 subplot(3, 1, 3);
 hold on
-plot(seconds(sample1/CZfreq), accel(sample1), 'b');
-plot(seconds(sample2(1:end-1)/CZfreq), accel(sample2(1:end-1)), 'r');
+plot(seconds(sample1/freq), accel(sample1), 'b');
+plot(seconds(sample2(1:end-1)/freq), accel(sample2(1:end-1)), 'r');
 hold off
 % write title and axis labels
 title("``accel''"); xlabel("Time"); ylabel("\muV s^{-1}");
@@ -222,13 +173,3 @@ end
 
 
 
-function ch = findChannel(hdr, chstr)
-    labels = hdr.label;
-    for ind = 1:length(labels)
-        label = labels{ind};
-        if ~isempty(regexp(label, chstr, "once"))
-            ch = ind;
-            break
-        end
-    end
-end
