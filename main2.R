@@ -6,41 +6,30 @@
 # install.packages("edfReader")
 library('edfReader')
 
-# install.packages("DiffusionRgqd")
-library("DiffusionRgqd")
+#install.packages("DiffusionRgqd")
 
 tqad <- function(hour, min, sec) { 60*60*hour + 60*min + sec }
-set.seed(14)
+
 
 ## Set globals
 
+edfDir <- './edf/dev/01_tcp_ar/002/00000258/s002_2003_07_21/'
+edfName <- '00000258_s002_t000.edf'
+edfPath <- paste(edfDir, edfName, sep='')
+
 outputDir <- './output/scratchpad/'
 
-edfName <- '00000675_s001_t001.edf'
-tspan = c(tqad(0,1,47), tqad(0,1,57))
-
-
+tspan = c(tqad(0,0,12), tqad(0,0,22))
 
 
 ## Import EDF
-
-### Find EDF
-edfList = Sys.glob('./edf/dev/*/*/*/*/*.edf')
-for (ind in 1:length(edfList)){
-    if (length(grep(edfName, edfList[ind])) > 0){
-        edfPath = edfList[ind]
-        break
-    }
-}
-
-### Load data
 
 hdr <- readEdfHeader(edfPath)
 record <- readEdfSignals(hdr)
 time <- seq(0,length=length(trace), by=(1/sRate))
 
 
-## Get channel data
+## Get single channel data
 
 sRate <- record[[1]]$sRate
 trace <- record[[1]]$signal
@@ -72,10 +61,6 @@ sample = seq(
     max(round(sRate*tspan[1]), 1),
     round(sRate*tspan[2])
 )
-
-### Fit mOU process to data
-
-GQD.remove()
 
 
 
@@ -110,5 +95,7 @@ plot(
 dev.off()
 
 
+
+## Fit data to multivariate OU process
 
 
