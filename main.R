@@ -1,30 +1,28 @@
 # Testing loading of edf data into R
 
 
-## Get dependencies
-
-# install.packages("edfReader")
-library('edfReader')
-
-# install.packages("DiffusionRgqd")
-library("DiffusionRgqd")
+# # Get dependencies
+#
+library('edfReader')  # install.packages("edfReader")
+library("DiffusionRgqd")  # install.packages("DiffusionRgqd")
 
 tqad <- function(hour, min, sec) { 60*60*hour + 60*min + sec }
-set.seed(14)
 
-## Set globals
-
+# # Set globals
+#
 outputDir <- './output/scratchpad/'
-
 edfName <- '00000675_s001_t001.edf'
 tspan = c(tqad(0,1,47), tqad(0,1,57))
 
+set.seed(14)
 
 
 
-## Import EDF
 
-### Find EDF
+# # Import EDF
+#
+# ## Find EDF
+#
 edfList = Sys.glob('./edf/dev/*/*/*/*/*.edf')
 for (ind in 1:length(edfList)){
     if (length(grep(edfName, edfList[ind])) > 0){
@@ -33,19 +31,19 @@ for (ind in 1:length(edfList)){
     }
 }
 
-### Load data
-
+# ## Load data
+#
 hdr <- readEdfHeader(edfPath)
 record <- readEdfSignals(hdr)
 time <- seq(0,length=length(trace), by=(1/sRate))
 
-
-## Get channel data
-
+# ## Get channel data
+#
 sRate <- record[[1]]$sRate
 trace <- record[[1]]$signal
 
-### Find Fz and Cz channel
+# ### Find Fz and Cz channel
+#
 for (ind in 1:length(record)) {
     label <- record[[ind]]$label
     if (length(grep('[Ff][Zz]', label)) == 1) {
@@ -57,32 +55,29 @@ for (ind in 1:length(record)) {
         CZind <- ind
     }
 }
-
-### Extract signals
 FZdata <- record[[FZind]]$signal
 CZdata <- record[[CZind]]$signal
 
 
-
-## Process data for plots
-
-### Clip time series to relevant sections
-
+# # Process data for plots
+#
+# ## Clip time series to relevant sections
+#
 sample = seq(
     max(round(sRate*tspan[1]), 1),
     round(sRate*tspan[2])
 )
 
-### Fit mOU process to data
+# ## Fit mOU process to data
+#
+#GQD.remove()
 
-GQD.remove()
 
 
-
-## Plot data
-
-### Simple trace
-
+# # Plot data
+#
+# ## Simple trace
+#
 plotName <- 'testo.png'
 plotPath <- paste(outputDir, plotName, sep='')
 
@@ -95,8 +90,8 @@ plot(
 )
 dev.off()
 
-### Phase plot
-
+# ## Phase plot
+#
 plotName <- 'testo2.png'
 plotPath <- paste(outputDir, plotName, sep='')
 
