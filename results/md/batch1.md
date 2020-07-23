@@ -16,8 +16,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 ## [FIG01] : subject1 (FROM SEPERATE DATASET) : non-epilepsy example
 
 ![](../../output/phase/subject1_40.png)
+
 ![](../../output/trace/subject1_40.png)
+
 ![](../../output/spect/subject1_40.png)
+
+![](../../output/quadvar/subject1_40.png)
+
 ![](../../output/accel/subject1_40.png)
 
 ***
@@ -25,8 +30,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 ## [FIG02] : 00000629_s001_t000 : background slowing
 
 ![](../../output/phase/00000629_s001_t001_90.png)
+
 ![](../../output/trace/00000629_s001_t001_90.png)
+
 ![](../../output/spect/00000629_s001_t001_90.png)
+
+![](../../output/quadvar/00000629_s001_t001_90.png)
+
 ![](../../output/accel/00000629_s001_t001_90.png)
 
 ***
@@ -34,8 +44,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 ## [FIG03] : 00000675_s001_t001 : Absence seizures
 
 ![](../../output/phase/00000675_s001_t001_250.png)
+
 ![](../../output/trace/00000675_s001_t001_250.png)
+
 ![](../../output/spect/00000675_s001_t001_250.png)
+
+![](../../output/quadvar/00000675_s001_t001_250.png)
+
 ![](../../output/accel/00000675_s001_t001_250.png)
 
 ***
@@ -43,8 +58,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 ## [FIG04] : 00000675_s002_t001 : Absence seizures
 
 ![](../../output/phase/00000675_s001_t001_250.png)
+
 ![](../../output/spect/00000675_s001_t001_250.png)
+
 ![](../../output/spect/00000675_s001_t001_250.png)
+
+![](../../output/quadvar/00000675_s001_t001_250.png)
+
 ![](../../output/accel/00000675_s001_t001_250.png)
 
 ***
@@ -54,8 +74,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 * Spikes in red, but difficult to tell apart from preceding activity, same "magnitude" of migration
 
 ![](../../output/phase/00000795_s001_t002_200.png)
+
 ![](../../output/trace/00000795_s001_t002_200.png)
+
 ![](../../output/spect/00000795_s001_t002_200.png)
+
+![](../../output/quadvar/00000795_s001_t002_200.png)
+
 ![](../../output/accel/00000795_s001_t002_200.png)
 
 ***
@@ -65,8 +90,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 - Spikes and waves in red
 
 ![](../../output/phase/00001278_s001_t001_153.png)
+
 ![](../../output/trace/00001278_s001_t001_153.png)
+
 ![](../../output/spect/00001278_s001_t001_153.png)
+
+![](../../output/quadvar/00001278_s001_t001_153.png)
+
 ![](../../output/accel/00001278_s001_t001_153.png)
 
 ***
@@ -76,8 +106,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 - Most of this record is seizure, but doesn't show up much on EEG
 
 ![](../../output/phase/00001770_s003_t000_79.png)
+
 ![](../../output/trace/00001770_s003_t000_79.png)
+
 ![](../../output/spect/00001770_s003_t000_79.png)
+
+![](../../output/quadvar/00001770_s003_t000_79.png)
+
 ![](../../output/accel/00001770_s003_t000_79.png)
 
 ***
@@ -87,8 +122,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 * (spike-wave in red)
 
 ![](../../output/phase/00001981_s004_t000_305.png)
+
 ![](../../output/trace/00001981_s004_t000_305.png)
+
 ![](../../output/spect/00001981_s004_t000_305.png)
+
+![](../../output/quadvar/00001981_s004_t000_305.png)
+
 ![](../../output/accel/00001981_s004_t000_305.png)
 
 ***
@@ -96,8 +136,13 @@ Determining this transition is a highly subjective process of inspection by a ma
 ## [FIG09] : 00001984_s001_t001 : absence seizures
 
 ![](../../output/phase/00001984_s001_t001_293.png)
+
 ![](../../output/trace/00001984_s001_t001_293.png)
+
 ![](../../output/spect/00001984_s001_t001_293.png)
+
+![](../../output/quadvar/00001984_s001_t001_293.png)
+
 ![](../../output/accel/00001984_s001_t001_293.png)
 
 ***
