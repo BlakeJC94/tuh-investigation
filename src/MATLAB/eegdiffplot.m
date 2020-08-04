@@ -36,6 +36,8 @@ end
 
 % %% Calculate periodograms (wavelets) TODO
 %
+FZspectrogram1 = calcSpect(FZdata([sample1, sample2]), freq);
+CZspectrogram1 = calcSpect(CZdata([sample1, sample2]), freq);
 
 % %% Calculate Quadratic variation %%%%%%%%
 %
