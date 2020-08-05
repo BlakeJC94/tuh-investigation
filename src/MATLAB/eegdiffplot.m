@@ -29,8 +29,8 @@ end
 
 % %% Calculate spectrum for each segment %%%%%%%%
 %
-subsample1 = sample(sample <= freq*fix(timeSpan(2)));
-subsample2 = sample(sample >  freq*fix(timeSpan(2)));
+subsample1 = sample(sample <  freq*fix(timeSpan(2)));
+subsample2 = sample(sample >= freq*fix(timeSpan(2)));
 
 [FZfq1, FZspect1] = calcSpect(FZdata(subsample1), freq);
 [FZfq2, FZspect2] = calcSpect(FZdata(subsample2), freq);
@@ -88,7 +88,7 @@ plotSpects(fileName, timeSpan, outputDir);
 
 % %% Quadvar plot %%%%%%%%
 %
-% plotQuadvar(fileName, timeSpan, outputDir);
+plotQuadvar(fileName, timeSpan, outputDir);
 
 
 end

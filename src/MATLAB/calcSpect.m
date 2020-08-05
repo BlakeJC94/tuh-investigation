@@ -1,5 +1,8 @@
 function [F, P1] = calcSpect(Y, freq)
     L = length(Y);
+    if L == 0
+        L = [];
+    end
     S = fft(Y);
     % Compute 2-sided spectrum P2 and 1-sided spectrum P1
     P2 = abs(S/L);

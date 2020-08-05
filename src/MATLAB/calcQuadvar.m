@@ -4,15 +4,16 @@ function quadvar = calcQuadvar(data, sample)
 %   sample = quadvar{iter,2}
 %   plot(seconds(sample/freq), quadvar{iter,1}(sample))
 
-sRatefactors = [1/16 1/8 1/4 1/2 1];
+sRateFactors = linspace(0.05, 1, 30); %[1/16 1/8 1/4 1/2 1];
+quadvar = cell(length(sRateFactors),2);
 
-for iter = 1:length(sRatefactors)
+for iter = 1:length(sRateFactors)
 
-    sfact = sRatefactors(iter);
+    sfact = sRateFactors(iter);
 
     % downsample the data
     downsample = [1:round(1/sfact):length(sample)];
-    samples{iter,2} = sample(downsample);
+    quadvar{iter,2} = sample(downsample);
 
     tmpdata = data(downsample);
 
