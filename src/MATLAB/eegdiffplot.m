@@ -41,8 +41,8 @@ CZspectrogram1 = calcSpect(CZdata([sample1, sample2]), freq);
 
 % %% Calculate Quadratic variation %%%%%%%%
 %
-FZquadvar = calcQuadvar(FZdata);
-CZquadvar = calcQuadvar(CZdata);
+% FZquadvar = calcQuadvar(FZdata);
+% CZquadvar = calcQuadvar(CZdata);
 
 % %% Save data to mat files %%%%%%%%
 %
