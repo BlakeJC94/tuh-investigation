@@ -14,11 +14,14 @@ plotwidth  = 900;  % Width of figure
 plotheight = 1200; % Height of figure (by default in pixels)
 set(h, 'Position', [plotx ploty plotwidth plotheight]);
 
+subsample1 = sample(sample <= freq*fix(timeSpan(2)));
+subsample2 = sample(sample >  freq*fix(timeSpan(2)));
+
 % Plot distance
 subplot(3, 1, 1);
 hold on
-plot(seconds(sample1/freq), disttrav(sample1), 'b');
-plot(seconds(sample2/freq), disttrav(sample2), 'r');
+plot(seconds(subsample1/freq), disttrav(subsample1), 'b');
+plot(seconds(subsample2/freq), disttrav(subsample2), 'r');
 hold off
 % write title and axis labels
 title("``dist''"); xlabel("Time"); ylabel("\muV");
@@ -26,8 +29,8 @@ title("``dist''"); xlabel("Time"); ylabel("\muV");
 % Plot speed
 subplot(3, 1, 2);
 hold on
-plot(seconds(sample1/freq), speed(sample1), 'b');
-plot(seconds(sample2/freq), speed(sample2), 'r');
+plot(seconds(subsample1/freq), speed(subsample1), 'b');
+plot(seconds(subsample2/freq), speed(subsample2), 'r');
 hold off
 % write title and axis labels
 title("``speed''"); xlabel("Time"); ylabel("\muV s^{-1}");
@@ -35,8 +38,8 @@ title("``speed''"); xlabel("Time"); ylabel("\muV s^{-1}");
 % Plot acceleration
 subplot(3, 1, 3);
 hold on
-plot(seconds(sample1/freq), accel(sample1), 'b');
-plot(seconds(sample2(1:end-1)/freq), accel(sample2(1:end-1)), 'r');
+plot(seconds(subsample1/freq), accel(subsample1), 'b');
+plot(seconds(subsample2(1:end-1)/freq), accel(subsample2(1:end-1)), 'r');
 hold off
 % write title and axis labels
 title("``accel''"); xlabel("Time"); ylabel("\muV s^{-2}");

@@ -1,17 +1,18 @@
-function [quadvars samples] = calcQuadvar(data, sample)
+function quadvar = calcQuadvar(data, sample)
 % Calculates quadratic variation process for a variety of sample rates
 % Plot results with
-%   plot(seconds(sample{iter}/freq), quadvars{iter})
+%   sample = quadvar{iter,2}
+%   plot(seconds(sample/freq), quadvar{iter,1}(sample))
 
 sRatefactors = [1/16 1/8 1/4 1/2 1];
 
-for iter = 1:length(sRates)
+for iter = 1:length(sRatefactors)
 
     sfact = sRatefactors(iter);
 
     % downsample the data
-    downsample = 1:round(1/sfact):length(sample);
-    samples{iter} = sample(downsample);
+    downsample = [1:round(1/sfact):length(sample)];
+    samples{iter,2} = sample(downsample);
 
     tmpdata = data(downsample);
 
@@ -21,8 +22,7 @@ for iter = 1:length(sRates)
         result(ind) = result(ind-1) + (tmpdata(ind) - tmpdata(ind-1)).^2;
     end
 
-
-    quadvar{iter} = result;
+    quadvar{iter,1} = result;
 
 end
 

@@ -17,7 +17,7 @@ end
 
 % % Load file %%%%%%%%
 %
-[FZdata, CZdata, sample1, sample2, freq, hdr, ~] = loadfile(fileName, timeSpan);
+[FZdata, CZdata, sample, freq, hdr, ~] = loadfile(fileName, timeSpan);
 
 
 
@@ -29,20 +29,24 @@ end
 
 % %% Calculate spectrum for each segment %%%%%%%%
 %
-[FZfq1, FZspect1] = calcSpect(FZdata(sample1), freq);
-[FZfq2, FZspect2] = calcSpect(FZdata(sample2), freq);
-[CZfq1, CZspect1] = calcSpect(CZdata(sample1), freq);
-[CZfq2, CZspect2] = calcSpect(CZdata(sample2), freq);
+subsample1 = sample(sample <= freq*fix(timeSpan(2)));
+subsample2 = sample(sample >  freq*fix(timeSpan(2)));
+
+[FZfq1, FZspect1] = calcSpect(FZdata(subsample1), freq);
+[FZfq2, FZspect2] = calcSpect(FZdata(subsample2), freq);
+
+[CZfq1, CZspect1] = calcSpect(CZdata(subsample1), freq);
+[CZfq2, CZspect2] = calcSpect(CZdata(subsample2), freq);
 
 % %% Calculate periodograms (wavelets) TODO
 %
-FZspectrogram1 = calcSpect(FZdata([sample1, sample2]), freq);
-CZspectrogram1 = calcSpect(CZdata([sample1, sample2]), freq);
+% FZspectrogram1 = calcSpect(FZdata([sample1, sample2]), freq);
+% CZspectrogram1 = calcSpect(CZdata([sample1, sample2]), freq);
 
 % %% Calculate Quadratic variation %%%%%%%%
 %
-% FZquadvar = calcQuadvar(FZdata);
-% CZquadvar = calcQuadvar(CZdata);
+FZquadvar = calcQuadvar(FZdata, sample);
+CZquadvar = calcQuadvar(CZdata, sample);
 
 % %% Save data to mat files %%%%%%%%
 %
@@ -54,7 +58,7 @@ end
 save(...
     strcat(dataDir, dataName), ...
     'fileName', 'FZdata', 'CZdata', ...
-    'freq', 'sample1', 'sample2', ...
+    'freq', 'sample', 'timeSpan', ...
     'disttrav', 'speed', 'accel', ...
     'FZfq1', 'FZspect1', 'FZfq2', 'FZspect2', ...
     'CZfq1', 'CZspect1', 'CZfq2', 'CZspect2', ...
@@ -68,23 +72,23 @@ save(...
 %
 % %% Phase plot %%%%%%%%
 %
-plotPhase(fileName,timeSpan,outputDir);
+plotPhase(fileName, timeSpan, outputDir);
 
 % %% Trace plot %%%%%%%%
 %
-plotTrace(fileName,timeSpan,outputDir)
+plotTrace(fileName, timeSpan, outputDir);
 
 % %% Motion plot %%%%%%%%
 %
-plotMotion(fileName, timeSpan, outputDir)
+plotMotion(fileName, timeSpan, outputDir);
 
 % %% Spect plot %%%%%%%%
 %
-plotSpects(fileName, timeSpan, outputDir)
+plotSpects(fileName, timeSpan, outputDir);
 
 % %% Quadvar plot %%%%%%%%
 %
-plotQuadvar(fileName, timeSpan, outputDir)
+% plotQuadvar(fileName, timeSpan, outputDir);
 
 
 end
