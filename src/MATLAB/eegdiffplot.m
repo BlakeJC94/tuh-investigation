@@ -29,7 +29,7 @@ end
 
 % %% Calculate spectrum for each segment %%%%%%%%
 %
-subsample1 = sample(sample <  freq*fix(timeSpan(2)));
+subsample1 = sample(sample <= freq*fix(timeSpan(2)));
 subsample2 = sample(sample >= freq*fix(timeSpan(2)));
 
 [FZfq1, FZspect1] = calcSpect(FZdata(subsample1), freq);
