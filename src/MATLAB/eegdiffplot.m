@@ -48,6 +48,11 @@ subsample2 = sample(sample >= freq*fix(timeSpan(2)));
 FZquadvar = calcQuadvar(FZdata, sample);
 CZquadvar = calcQuadvar(CZdata, sample);
 
+% %% Calculate Quadratic variation of speed %%%%%%%%
+%
+speedquadvar = calcQuadvar(speed, sample);
+
+
 % %% Save data to mat files %%%%%%%%
 %
 dataName = strcat(fileName(1:end-4), '_', num2str(timeSpan(1)), '.mat');
@@ -62,7 +67,7 @@ save(...
     'disttrav', 'speed', 'accel', ...
     'FZfq1', 'FZspect1', 'FZfq2', 'FZspect2', ...
     'CZfq1', 'CZspect1', 'CZfq2', 'CZspect2', ...
-    'FZquadvar', 'CZquadvar' ...
+    'FZquadvar', 'CZquadvar', 'speedquadvar' ...
 );
 
 

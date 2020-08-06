@@ -10,12 +10,14 @@ plotDir = strcat(outputDir, 'quadvar/');
 plotx      = 50;   % Screen position
 ploty      = 50;   % Screen position
 plotwidth  = 900;  % Width of figure
-plotheight = 700;  % Height of figure (by default in pixels)
+plotheight = 1050;  % Height of figure (by default in pixels)
 set(h, 'Position', [plotx ploty plotwidth plotheight]);
 
 
-% Fz QV
-subplot(2, 1, 1);
+
+
+% Fz QV %%%%%%%%
+subplot(3, 1, 1);
 
 hold on;
 for iter = 1:size(FZquadvar, 1)
@@ -66,8 +68,10 @@ xlabel("Time");
 ylabel("Fz-ref Quadratic variation (\muV^2)");
 
 
-% Cz QV
-subplot(2, 1, 2);
+
+
+% Cz QV %%%%%%%%
+subplot(3, 1, 2);
 
 hold on;
 for iter = 1:size(CZquadvar, 1)
@@ -116,6 +120,56 @@ hold off;
 grid on
 xlabel("Time");
 ylabel("Cz-ref Quadratic variation (\muV^2)");
+
+
+
+% Speed QV %%%%%%%%
+subplot(3, 1, 3);
+
+hold on;
+for iter = 1:size(speedquadvar, 1)
+
+    sample = speedquadvar{iter,2};
+
+    subsample1 = (sample <= freq*fix(timeSpan(2)));
+    subsample2 = (sample >= freq*fix(timeSpan(2)));
+
+    if iter == 1
+        plot( ...
+            seconds(sample(subsample1)/freq), speedquadvar{iter,1}(subsample1), ...
+            'b-s','durationtickformat','hh:mm:ss' ...
+        );
+        plot( ...
+            seconds(sample(subsample2)/freq), speedquadvar{iter,1}(subsample2), ...
+            'r-s','durationtickformat','hh:mm:ss' ...
+        );
+    elseif iter == size(speedquadvar,1)
+
+        plot( ...
+            seconds(sample(subsample1)/freq), speedquadvar{iter,1}(subsample1), ...
+            'b-o','durationtickformat','hh:mm:ss' ...
+        );
+        plot( ...
+            seconds(sample(subsample2)/freq), speedquadvar{iter,1}(subsample2), ...
+            'r-o','durationtickformat','hh:mm:ss' ...
+        );
+
+    else
+
+        plot( ...
+            seconds(sample(subsample1)/freq), speedquadvar{iter,1}(subsample1), ...
+            'b:','durationtickformat','hh:mm:ss' ...
+        );
+        plot( ...
+            seconds(sample(subsample2)/freq), speedquadvar{iter,1}(subsample2), ...
+            'r:','durationtickformat','hh:mm:ss' ...
+        );
+    end
+
+end
+hold off;
+
+
 
 % save to disk
 if ~exist(plotDir, 'dir')
