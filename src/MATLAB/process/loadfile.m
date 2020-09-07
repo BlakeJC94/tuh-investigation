@@ -1,4 +1,4 @@
-function [FZdata, CZdata, sample, freq, hdr, record] = loadfile(fileName, timeSpan)
+function [xdata, ydata, tdata, freq, hdr, record] = loadfile(fileName, timeSpan, chx, chy)
 % Function that identifies fileName and loads EDF snippet
 %
 
@@ -20,25 +20,24 @@ end
 % load edf
 [hdr, record] = edfread(strcat(fileDir, '/', fileName));
 
+
+
 % extract channels of interest
-FZch = findChannel(hdr, "[Ff][Zz]");
-CZch = findChannel(hdr, "[Cc][Zz]");
-FZdata = record(FZch, :);
-CZdata = record(CZch, :);
+nchx = findChannel(hdr, chx);
+nchy = findChannel(hdr, chy);
 
-% Parse timespans
-FZfreq = hdr.frequency(FZch);
-CZfreq = hdr.frequency(FZch);
-if FZfreq ~= CZfreq
-    disp("Fz and Cz frequencies are different?");
-end
-freq = FZfreq;
+% get frequency
+freq = hdr.frequency(nchx);
 
-% get sample points of requested timeSpan
-sample = (...
-    max(fix(freq*timeSpan(1)),1)):...
-    fix(freq*timeSpan(3)...
-);
+% get start/endpoints of time series
+sampleStart = max(fix(freq*timeSpan(1)),1));
+sampleEnd = fix(freq*timeSpan(3));
+sample = sampleStart:sampleEnd;
+
+% pull sample
+xdata = record(nchx, sample);
+ydata = record(nchy, sample);
+tdata = sample/freq;
 
 end
 
