@@ -73,6 +73,7 @@ for index = 1:size(samplesToPlot, 1)
 
     plotPhaseTrace(fileName, timeSpan, outputDir);
     plotQuadvar(fileName, timeSpan, outputDir);
+    plotQuadvarEigvals(fileName, timeSpan, outputDir);
 
     pause(1.0);
 
