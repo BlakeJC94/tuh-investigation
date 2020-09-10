@@ -30,7 +30,7 @@ nchy = findChannel(hdr, chy);
 freq = hdr.frequency(nchx);
 
 % get start/endpoints of time series
-sampleStart = max(fix(freq*timeSpan(1)),1));
+sampleStart = max(fix(freq*timeSpan(1)),1);
 sampleEnd = fix(freq*timeSpan(3));
 sample = sampleStart:sampleEnd;
 

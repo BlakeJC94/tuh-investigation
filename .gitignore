@@ -1,5 +1,7 @@
 _DOCS/*
+_DOCS
 edf/*
+edf
 feats/*
 _temp.html
 output/data/*.mat
