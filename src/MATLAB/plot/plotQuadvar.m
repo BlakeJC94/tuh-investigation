@@ -21,7 +21,7 @@ plotqvars(qvarxx,tdata,timeSpan,freq);
 % write title and axis labels
 grid on
 xlabel("Time");
-ylabel("Fz-ref Quadratic variation (\muV^2)");
+ylabel("Fz-ref Quadratic variation (div by freq^2)");
 
 
 
@@ -32,7 +32,7 @@ plotqvars(qvaryy,tdata,timeSpan,freq);
 % write title and axis labels
 grid on
 xlabel("Time");
-ylabel("Cz-ref Quadratic variation (\muV^2)");
+ylabel("Cz-ref Quadratic variation (div by freq^2)");
 
 
 
@@ -42,7 +42,7 @@ plotqvars(qvarxy,tdata,timeSpan,freq);
 % write title and axis labels
 grid on
 xlabel("Time");
-ylabel("Fz-Cz Quadratic covariation (\muV^2)");
+ylabel("Fz-Cz Quadratic covariation (div by freq^2)");
 
 
 

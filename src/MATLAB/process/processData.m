@@ -21,16 +21,20 @@ qvarxy = calcQuadvar(xdata, ydata, tdata, [1]);
 
 
 
-% %% Calculate eigenvalues %%%%%%%% TODO
+% %% Calculate eigenvalues %%%%%%%%
 %
 qvarmat = zeros(2,2,length(tdata));
 qvarmat(1,1,:) = qvarxx{end,1};
 qvarmat(2,2,:) = qvaryy{end,1};
 qvarmat(1,2,:) = qvarxy{end,1};
 qvarmat(2,1,:) = qvarxy{end,1};
+
 eigvals = zeros(length(tdata), 2);
+eigvecs = zeros(length(tdata), 2,2);
 for i = 1:length(tdata)
-    eigvals(i,:) = eig(qvarmat(:,:,i))';
+    [V, D] = eig(qvarmat(:,:,i));
+    eigvals(i,:) = diag(D)';
+    eigvecs(i,:,:) = V;
 end
 
 
@@ -46,7 +50,7 @@ save(...
     'fileName', 'timeSpan', 'chx', 'chy', ...
     'xdata', 'ydata', 'tdata', 'freq', ...
     'qvarxx', 'qvaryy', 'qvarxy', ...
-    'eigvals' ...
+    'eigvals', 'eigvecs' ...
 );
 
 

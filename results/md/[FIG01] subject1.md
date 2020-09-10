@@ -2,10 +2,7 @@
 
 ![](../../output/phase/subject1_40.png)
 
-![](../../output/trace/subject1_40.png)
-
-![](../../output/spect/subject1_40.png)
-
 ![](../../output/quadvar/subject1_40.png)
 
-![](../../output/accel/subject1_40.png)
+![](../../output/quadvareigval/subject1_40.png)
+
