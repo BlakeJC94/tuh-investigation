@@ -1,4 +1,4 @@
-function qvar = calcQuadvar(data1, data2, tdata, sRateFactors)
+function qvar = calcQuadVar(data1, data2, tdata, sRateFactors)
 % Calculates quadratic variation process for a variety of sample rates
 % Plot results with
 %   sample = quadvar{iter,2}

@@ -1,5 +1,7 @@
 _DOCS/*
 _DOCS
+data/
+data/*
 edf/*
 edf
 feats/*
