@@ -20,7 +20,7 @@ freq = 1/diff(tdata(1:2));
 
 % % Plot eigenvalues
 %
-subplot(2,2,[1,2])
+subplot(3,5,1:10)
 x1 = seconds(tdata(subsample1));
 y1 = eigVals(:, subsample1)/(freq^2);
 plot(x1, y1, 'bx', 'durationtickformat','hh:mm:ss');
@@ -74,6 +74,16 @@ for i = 1:2
     xlabel("x"); ylabel("y");
     
 end
+
+% for i = 1:5
+%     
+%     subplot(3,5, 10+i);
+%     
+%     x1 = 
+%     y1 = 
+% 
+% end
+
 
 
 % save to disk

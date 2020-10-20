@@ -25,16 +25,16 @@ if fileName(end-2:end) == 'edf'  % tuh_data case
     filePath = strcat(fileDir, '/', fileName);
     [hdr, record] = edfread(filePath);
     
+    % extract channels of interest
+    nchx = findChannel(hdr, chx);
+    nchy = findChannel(hdr, chy);
+    
     % get frequency
     freq = hdr.frequency(nchx);
     % get start/endpoints of time series
     sampleStart = max(fix(freq*timeSpan(1)),1);
     sampleEnd = fix(freq*timeSpan(3));
     sample = sampleStart:sampleEnd;
-
-    % extract channels of interest
-    nchx = findChannel(hdr, chx);
-    nchy = findChannel(hdr, chy);
 
     % pull sample
     xdata = record(nchx, sample);

@@ -22,7 +22,7 @@ samplesToPlot{1,1} = '00000629_s001_t001.edf';
 samplesToPlot{1,2} = [t(0,1,30), t(0,1,50), t(0,1,50)];
 
 samplesToPlot{1,1} = 'Seizure_003.mat';
-samplesToPlot{1,2} = [t(0,4,0), t(0,6,0), t(0,6,0)];
+samplesToPlot{1,2} = [t(0,4,30), t(0,4,35), t(0,5,0)];
 
 % samplesToPlot{2,1} = '00000675_s001_t001.edf';
 % samplesToPlot{2,2} = [t(0,1,47), t(0,1,57), t(0,2,17)];
