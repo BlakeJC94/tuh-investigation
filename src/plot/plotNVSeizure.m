@@ -12,21 +12,20 @@ fileDir = './data/nv_seizures/';
 filePath = strcat(fileDir, SeizureName);
 load(filePath, 'Seizure');
 
-if nargin == 1
-    tSpan = [1, size(Seizure, 1)];
+if nargin == 1 || isempty(tSpan)
+    sample = 1:size(Seizure, 1);
+else
+    sampleStart = max(fix(freq*tSpan(1)),1);
+    sampleEnd = fix(freq*tSpan(2));
+    sample = sampleStart:sampleEnd;
 end
-
-nCh = size(Seizure, 2);
-
-sampleStart = max(fix(freq*tSpan(1)),1);
-sampleEnd = fix(freq*tSpan(2));
-sample = sampleStart:sampleEnd;
 
 tdata = sample/freq;
 xdata = Seizure(sample, :);
 
 figure(1); clf;
 hold on
+nCh = size(Seizure, 2);
 for ch = 1:nCh
     x1 = seconds(tdata);
     y1 = (ch-ceil(nCh/2))*spacing + xdata(:,ch);
@@ -34,6 +33,7 @@ for ch = 1:nCh
 end
 hold off
 xlabel("Time");
+grid on;
 
 
 

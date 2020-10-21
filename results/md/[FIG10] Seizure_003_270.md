@@ -1,0 +1,7 @@
+## [FIG10] : Seizure_003_270 : iEEG, sRate = 400Hz
+
+![](../../output/phase/Seizure_003_270.png)
+
+![](../../output/quadvar/Seizure_003_270.png)
+
+![](../../output/quadvareigval/Seizure_003_270.png)

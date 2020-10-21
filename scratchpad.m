@@ -22,22 +22,22 @@ end
 [xdata, ydata, tdata] = loadFile(fileName, timeSpan, chx, chy);
 processData(fileName, timeSpan, xdata, ydata, tdata);
 
-plotPhaseTrace(fileName, timeSpan);
+% plotPhaseTrace(fileName, timeSpan);
 plotQuadVarEigVals(fileName, timeSpan);
 
 
-A = [1, 4; 
-    4, 5];
-
-[V,D] = eig(A);
-ax = D(1,1)*V(1,1);
-ay = D(1,1)*V(2,1);
-bx = D(2,2)*V(1,2);
-by = D(2,2)*V(2,2);
-
-theta = linspace(0, 2*pi, 200);
-x = ax*sin(theta) + bx*cos(theta);
-y = ay*sin(theta) + by*cos(theta);
-
-figure;
-plot(x,y);
+% A = [1, 4; 
+%     4, 5];
+% 
+% [V,D] = eig(A);
+% ax = D(1,1)*V(1,1);
+% ay = D(1,1)*V(2,1);
+% bx = D(2,2)*V(1,2);
+% by = D(2,2)*V(2,2);
+% 
+% theta = linspace(0, 2*pi, 200);
+% x = ax*sin(theta) + bx*cos(theta);
+% y = ay*sin(theta) + by*cos(theta);
+% 
+% figure;
+% plot(x,y);
