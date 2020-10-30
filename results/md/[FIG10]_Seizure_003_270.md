@@ -2,6 +2,10 @@
 
 ![](../../output/phase/Seizure_003_270.png)
 
+![](../../output/flow/Seizure_003_270.png)
+
+![](../../output/flow2/Seizure_003_270.png)
+
 ![](../../output/quadvar/Seizure_003_270.png)
 
 ![](../../output/quadvareigval/Seizure_003_270.png)

@@ -78,7 +78,8 @@ for index = 1:size(samplesToPlot, 1)
     plotPhaseTrace(fileName, timeSpan);
     plotQuadVar(fileName, timeSpan);
     plotQuadVarEigVals(fileName, timeSpan);
-
+    plotFlowField(fileName, timeSpan);
+    
     pause(1.0);
 
 end

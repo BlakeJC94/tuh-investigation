@@ -1,0 +1,94 @@
+% This file is just for quick tests of new ideas on a single snippet of data
+%
+%
+%
+
+% Load dependencies
+addpath('./src/process/')
+addpath('./src/plot/')
+t = @(hour, min, sec) hour*60*60 + min*60 + sec;
+
+% Set globalss
+fileName = '00000675_s001_t001.edf';
+timeSpan = [t(0,4,10), t(0,4,26), t(0,4,42)];
+chx = "[Ff][Zz]";
+chy = "[Cc][Zz]";
+
+outputDir = './output/scratchpad/';
+if ~exist(outputDir, 'dir')
+    mkdir(outputDir)
+end
+
+[xdata, ydata, tdata] = loadFile(fileName, timeSpan, chx, chy);
+
+spacing = 40;
+[flowField, flowField1, flowField2] = calcFlowField(xdata, ydata, tdata, timeSpan, spacing);
+%%%%%%%%
+
+
+h = figure(10); clf;
+plotName = strcat(fileName(1:end-4), '_', num2str(timeSpan(1)), '.png');
+plotDir = strcat(outputDir, 'flow/');
+plotx      = 50;   % Screen position
+ploty      = 50;   % Screen position
+plotwidth  = 1000;  % Width of figure
+plotheight = 500;  % Height of figure (by default in pixels)
+set(h, 'Position', [plotx ploty plotwidth plotheight]);
+
+
+x = flowField{1};
+y = flowField{2};
+u = flowField{3};
+v = flowField{4};
+q = quiver(x,y,u,v, 'k');
+q.LineWidth = 2;
+
+
+figure(11);
+subplot(1,2,1);
+x = flowField1{1};
+y = flowField1{2};
+u = flowField1{3};
+v = flowField1{4};
+q = quiver(x,y,u,v, 'b');
+q.LineWidth = 2;
+
+subplot(1,2,2);
+x = flowField2{1};
+y = flowField2{2};
+u = flowField2{3};
+v = flowField2{4};
+q = quiver(x,y,u,v, 'r');
+q.LineWidth = 2;
+
+% hold on;
+% plot(x,y,'--k');
+% hold off;
+
+
+%%%%%%%%
+
+
+
+
+processData(fileName, timeSpan, xdata, ydata, tdata);
+
+plotPhaseTrace(fileName, timeSpan);
+% plotQuadVarEigVals(fileName, timeSpan);
+
+
+% A = [1, 4; 
+%     4, 5];
+% 
+% [V,D] = eig(A);
+% ax = D(1,1)*V(1,1);
+% ay = D(1,1)*V(2,1);
+% bx = D(2,2)*V(1,2);
+% by = D(2,2)*V(2,2);
+% 
+% theta = linspace(0, 2*pi, 200);
+% x = ax*sin(theta) + bx*cos(theta);
+% y = ay*sin(theta) + by*cos(theta);
+% 
+% figure;
+% plot(x,y);

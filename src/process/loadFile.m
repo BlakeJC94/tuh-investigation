@@ -58,8 +58,8 @@ elseif fileName(end-2:end) == 'mat'  % nv_seizures case
     sample = sampleStart:sampleEnd;
     
     % pull sample
-    xdata = Seizure(sample, nchx);
-    ydata = Seizure(sample, nchy);
+    xdata = Seizure(sample, nchx)';
+    ydata = Seizure(sample, nchy)';
     tdata = sample/freq;
     
 end
