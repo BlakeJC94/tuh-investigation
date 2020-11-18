@@ -1,6 +1,6 @@
 #!/bin/bash
 
-plots=( "phase" "flow" "flow2" "quadvar" "quadvareigval" )
+plots=( "phase" "flow" "flow2" "quadvar" "quadvareigval" "directions" )
 
 
 for i in ./md/*.md

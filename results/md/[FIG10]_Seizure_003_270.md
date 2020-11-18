@@ -9,3 +9,5 @@
 ![](../../output/quadvar/Seizure_003_270.png)
 
 ![](../../output/quadvareigval/Seizure_003_270.png)
+
+![](../../output/directions/Seizure_003_270.png)

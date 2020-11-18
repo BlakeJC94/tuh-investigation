@@ -3,7 +3,7 @@ function plotQuadVar(fileName, timeSpan)
 outputDir = './output/';
 dataDir = strcat(outputDir, 'data/');
 dataName = strcat(fileName(1:end-4), '_', num2str(timeSpan(1)), '.mat');
-load(strcat(dataDir, dataName), 'tdata', 'qVarxx', 'qVaryy', 'qVarxy');
+load(strcat(dataDir, dataName), 'tdata', 'qVarxx', 'qVaryy', 'qVarxy', 'windowLength');
 
 h = figure(2); clf;
 plotName = strcat(fileName(1:end-4), '_', num2str(timeSpan(1)), '.png');
@@ -24,7 +24,14 @@ for i = 1:3
     grid on
     xlabel("Time");
     ylabel(plotCell{i,2});
+    if windowLength > 0
+        freq = 1/diff(tdata(1:2));
+        windowLengthSec = windowLength / freq;
+        titleStr = strcat('windowLength =  ', num2str(windowLength), ', (', num2str(windowLengthSec), ' s)');
+        title(titleStr);
+    end
 end
+
 
 % save to disk
 if ~exist(plotDir, 'dir')

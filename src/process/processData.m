@@ -20,10 +20,11 @@ outputDir = './output/';
 
 % Calculate quadratic variation matrix %%%%%%%%
 sRateFracs = [1];
+windowLength = 128;
 
-qVarxx = calcQuadVar(xdata, xdata, tdata, sRateFracs);
-qVaryy = calcQuadVar(ydata, ydata, tdata, sRateFracs);
-qVarxy = calcQuadVar(xdata, ydata, tdata, sRateFracs);
+qVarxx = calcQuadVar(xdata, xdata, tdata, sRateFracs, windowLength);
+qVaryy = calcQuadVar(ydata, ydata, tdata, sRateFracs, windowLength);
+qVarxy = calcQuadVar(xdata, ydata, tdata, sRateFracs, windowLength);
 
 qVarmat = zeros(2, 2, length(tdata));
 qVarmat(1,1,:) = qVarxx{end,1};
@@ -46,6 +47,10 @@ spacing = range([xdata, ydata])/24;
 [flowField, flowField1, flowField2] = calcFlowField(xdata, ydata, tdata, timeSpan, spacing);
 
 
+% Calculate directionality hist
+[directions1, directions2] = calcDirectionHist(xdata, ydata, tdata, timeSpan);
+
+
 % Save data to mat files for plots %%%%%%%%
 dataName = strcat(fileName(1:end-4), '_', num2str(timeSpan(1)), '.mat');
 dataDir = strcat(outputDir, 'data/');
@@ -55,9 +60,10 @@ end
 save(...
     strcat(dataDir, dataName), ...
     'xdata', 'ydata', 'tdata', ...
-    'qVarxx', 'qVaryy', 'qVarxy', ...
+    'qVarxx', 'qVaryy', 'qVarxy', 'windowLength', ...
     'qVarmat', 'eigVals', 'eigVecs', ...
-    'flowField', 'flowField1', 'flowField2'  ...
+    'flowField', 'flowField1', 'flowField2',  ...
+    'directions1', 'directions2' ...
 );
 
 

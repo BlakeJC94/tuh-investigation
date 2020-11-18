@@ -9,3 +9,5 @@
 ![](../../output/quadvar/subject1_40.png)
 
 ![](../../output/quadvareigval/subject1_40.png)
+
+![](../../output/directions/subject1_40.png)

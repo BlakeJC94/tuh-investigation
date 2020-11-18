@@ -4,7 +4,11 @@ function qvar = calcQuadVar(data1, data2, tdata, sRateFactors, windowLength)
 %   sample = quadvar{iter,2}
 %   plot(seconds(sample/freq), quadvar{iter,1}(sample))
 
-if nargin < 4
+if nargin <= 4 || windowLength == 0
+    windowLength = length(tdata);
+end
+
+if nargin <= 3
     sRateFactors = linspace(0.05, 1, 30);
     % sRateFactors = [1/16 1/8 1/4 1/2 1];
 end
@@ -23,11 +27,14 @@ for iter = 1:length(sRateFactors)
     tmpdata1 = data1(downsample);
     tmpdata2 = data2(downsample);
 
-    result = zeros(size(tmpdata1));
-    result(1) = (tmpdata1(2) - tmpdata1(1)).*(tmpdata2(2) - tmpdata2(1));
-    for ind = 2:length(tmpdata1)
-        result(ind) = result(ind-1) + (tmpdata1(ind) - tmpdata1(ind-1)).*(tmpdata2(ind) - tmpdata2(ind-1));
-    end
+%     result = zeros(size(tmpdata1));
+%     result(1) = (tmpdata1(2) - tmpdata1(1)).*(tmpdata2(2) - tmpdata2(1));
+%     for ind = 2:length(tmpdata1)
+%         result(ind) = result(ind-1) + (tmpdata1(ind) - tmpdata1(ind-1)).*(tmpdata2(ind) - tmpdata2(ind-1));
+%     end
+
+    result = [0, (tmpdata1(2:end) - tmpdata1(1:end-1)).*(tmpdata2(2:end) - tmpdata2(1:end-1))];
+    result = movsum(result,[windowLength,0]);
 
     qvar{iter,1} = result;
 

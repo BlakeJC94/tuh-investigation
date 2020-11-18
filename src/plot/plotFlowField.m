@@ -1,6 +1,6 @@
 function plotFlowField(fileName, timeSpan)
 
-lineWidth = 1.5;
+lineWidth = 1.25;
 
 outputDir = './output/';
 dataDir = strcat(outputDir, 'data/');

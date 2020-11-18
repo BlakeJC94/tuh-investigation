@@ -79,6 +79,7 @@ for index = 1:size(samplesToPlot, 1)
     plotQuadVar(fileName, timeSpan);
     plotQuadVarEigVals(fileName, timeSpan);
     plotFlowField(fileName, timeSpan);
+    plotDirectionHist(fileName, timeSpan);
     
     pause(1.0);
 
