@@ -1,0 +1,30 @@
+function [directions1, directions2] = calcDirectionHist(xdata, ydata, tdata, timeSpan)
+
+windowLength = 3;
+
+% patition tdata
+subsample1 = find(tdata < timeSpan(2));
+xdata1 = xdata(subsample1);
+ydata1 = ydata(subsample1);
+subsample2 = find(tdata >= timeSpan(2));
+xdata2 = xdata(subsample2);
+ydata2 = ydata(subsample2);
+
+% smooth data
+data1sm = smoothData(xdata1, ydata1, windowLength);
+
+downSample = floor(length(subsample1)/windowLength);
+data1sm = zeros(2,downSample);
+for i = 1:downSample
+    beginInd = (i-1)*windowLength+1;
+    endInd = floor(i*windowLength, length(subsample1));
+    data1sm(1,i) = mean(xdata1(beginInd:endInd));
+    data1sm(1,i) = mean(ydata1(beginInd:endInd));
+end
+
+directions1 = atan2(diff(ydata1), diff(xdata1));
+directions2 = atan2(diff(ydata2), diff(xdata2));
+
+
+end
+

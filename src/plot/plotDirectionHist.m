@@ -12,17 +12,17 @@ plotName = strcat(fileName(1:end-4), '_', num2str(timeSpan(1)), '.png');
 plotDir = strcat(outputDir, 'directions/');
 plotx      = 50;   % Screen position
 ploty      = 50;   % Screen position
-plotwidth  = 600;  % Width of figure
+plotwidth  = 1000;  % Width of figure
 plotheight = 500;  % Height of figure (by default in pixels)
 set(h, 'Position', [plotx ploty plotwidth plotheight]);
 
+subplot(1,2,1);
+polarhistogram(directions1, bins, 'FaceColor','blue');
+title('Trajectory directions in segment 1');
 
-polarhistogram([directions1, directions2], bins, 'FaceColor','red', 'FaceAlpha',.3);
-hold on
-polarhistogram(directions1, bins, 'FaceColor','blue','FaceAlpha',.3);
-hold off
-
-title('Directionalaity of phase space trajectory')
+subplot(1,2,2);
+polarhistogram(directions2, bins, 'FaceColor','red');
+title('Trajectory directions in segment 2');
 
 % save output
 if ~exist(plotDir, 'dir')
