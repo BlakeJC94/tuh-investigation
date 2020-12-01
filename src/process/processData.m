@@ -1,6 +1,6 @@
 function processData(fileName, timeSpan, xdata, ydata, tdata)
 %processData Converts fileName and timeSpan into mat file
-% 
+%
 % Saves
 % -----
 % results : mat file
@@ -9,7 +9,7 @@ function processData(fileName, timeSpan, xdata, ydata, tdata)
 %     qVarxx, qVaryy, qVarxy : cells {sRateFracInd, QvOrTime}
 %         Tvecs included in 2nd dim due to downsampling
 %     qVarmat : array (covdim1, covdim2, sampleStep)
-%         Only max sample rate is recorded here 
+%         Only max sample rate is recorded here
 %     eigvals : matrix (eigInd, sampleStep)
 %     eigvecs : array (eigInd, dim, sampleStep)
 
@@ -48,7 +48,9 @@ spacing = range([xdata, ydata])/24;
 
 
 % Calculate directionality hist
-[directions1, directions2] = calcDirectionHist(xdata, ydata, tdata, timeSpan);
+windowLength = 3;
+dirThreshold = 60*(pi/180);
+[directions1, directions2, times1, times2] = calcDirectionHist(xdata, ydata, tdata, timeSpan, windowLength, dirThreshold);
 
 
 % Save data to mat files for plots %%%%%%%%
@@ -63,7 +65,8 @@ save(...
     'qVarxx', 'qVaryy', 'qVarxy', 'windowLength', ...
     'qVarmat', 'eigVals', 'eigVecs', ...
     'flowField', 'flowField1', 'flowField2',  ...
-    'directions1', 'directions2' ...
+    'directions1', 'directions2', ...
+    'times1', 'times2' ...
 );
 
 
