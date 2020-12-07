@@ -49,7 +49,7 @@ theta2 = atan2(diff(ydata2sm), diff(xdata2sm));
 lengths1 = sqrt(diff(xdata1sm).^2 + diff(ydata1sm).^2);
 lengths2 = sqrt(diff(xdata2sm).^2 + diff(ydata2sm).^2);
 
-binEdges = (pi/180).*(-180:6:180);
+binEdges = (pi/180).*(0:6:360);
 binCounts1 = zeros(1, length(binEdges)-1);
 binCounts2 = zeros(1, length(binEdges)-1);
 
@@ -61,6 +61,30 @@ for i = 1:(length(binEdges)-1)
     binCounts2(i) = sum(lengths2(ind2));
 
 end
+
+keyboard;
+
+
+
+
+
+
+% keyboard;
+
+% % smooth data
+% data1sm = smoothData(xdata1, ydata1, windowLength);
+% data2sm = smoothData(xdata2, ydata2, windowLength);
+
+
+
+
+% identify times where directionality changes significantly
+% ind1 = find(abs(diff(directions1)) > dirThreshold);
+% events1 = tdata(windowLength .* ind1);
+% times1 = diff(events1);
+% ind2 = find(abs(diff(directions2)) > dirThreshold);
+% events2 = tdata(subsample2(1) + windowLength .* ind2);
+% times2 = diff(events2);
 
 
 end

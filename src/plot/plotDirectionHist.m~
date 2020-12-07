@@ -19,13 +19,12 @@ set(h, 'Position', [plotx ploty plotwidth plotheight]);
 
 subplot(1,2,1);
 % polarhistogram(theta1, bins, 'FaceColor', 'blue');
-polarhistogram('BinEdges', binEdges, 'BinCounts', binCounts1, 'FaceColor', 'blue')
-title('Weighted trajectory dirs (5 step MA filter)');
+polarhistogram('BinEdges', theta1, bins, 'FaceColor', 'blue')
+title('Trajectory dirs (5 step MA filter)');
 
 subplot(1,2,2);
 % polarhistogram(theta2, bins, 'FaceColor', 'red');
-polarhistogram('BinEdges', binEdges, 'BinCounts', binCounts2, 'FaceColor', 'red')
-title('Weighted trajectory dirs (5 step MA filter)');
+title('Trajectory dirs (5 step MA filter)');
 
 % save output
 if ~exist(plotDir, 'dir')
